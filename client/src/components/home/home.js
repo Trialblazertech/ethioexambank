@@ -1,27 +1,21 @@
-// Home.js
+// src/components/home/home.js
 import React from "react";
-import { useAuth } from "../../context/authContext";
-import { doSignOut } from "../../firebase/firebase"; // Import the sign-out function
+import { useNavigate } from "react-router-dom";
+import { auth } from "../../firebase/firebase";
+import { signOut } from "firebase/auth";
 
 const Home = () => {
-  const { userLoggedIn } = useAuth();
+  const navigate = useNavigate();
 
-  const handleSignOut = async () => {
-    await doSignOut();
-    // After signing out, you can manually navigate to the login page
+  const handleLogout = async () => {
+    await signOut(auth);
+    navigate("/login"); // Redirect to login after logout
   };
 
   return (
     <div>
-      <h1>Welcome to Home Page</h1>
-      {userLoggedIn ? (
-        <div>
-          <p>You're logged in as: {userLoggedIn.email}</p>
-          <button onClick={handleSignOut}>Sign Out</button>
-        </div>
-      ) : (
-        <p>You are not logged in</p>
-      )}
+      <h1>Welcome to the Home Page</h1>
+      <button onClick={handleLogout}>Logout</button>
     </div>
   );
 };

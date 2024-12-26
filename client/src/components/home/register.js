@@ -23,7 +23,7 @@ const Register = () => {
     setIsRegistering(true);
     try {
       await createUserWithEmailAndPassword(auth, email, password);
-      navigate("/home"); // Redirect to home after successful registration
+      navigate("/"); // Redirect to home after successful registration
     } catch (error) {
       setErrorMessage(error.message);
     } finally {

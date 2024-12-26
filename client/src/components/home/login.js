@@ -1,20 +1,33 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { doSignInWithEmailAndPassword } from '../../firebase/firebase'; // Ensure correct function import
+// src/components/home/login.js
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { doSignInWithEmailAndPassword } from "../../firebase/auth";
+import { auth } from "../../firebase/firebase"; // Import the auth instance
+import { onAuthStateChanged } from "../../firebase/auth";
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
+
+  // Redirect if user is already logged in
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        navigate("/"); // Redirect to home if logged in
+      }
+    });
+    return () => unsubscribe(); // Cleanup listener on unmount
+  }, [navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await doSignInWithEmailAndPassword(email, password); // Function to handle sign in
-      navigate('/'); // Navigate to the home page upon successful login
+      await doSignInWithEmailAndPassword(email, password);
+      navigate("/"); // Navigate to home on successful login
     } catch (err) {
-      setError('Invalid email or password');
+      setError(err.message || "Invalid email or password");
     }
   };
 
@@ -27,20 +40,24 @@ const Login = () => {
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-        />
+          required
+        /> <br />
         <input
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-        />
-        {error && <p>{error}</p>}
-        <button type="submit">Login</button>
+          required
+        /> <br />
+        {error && <p style={{ color: "red" }}>{error}</p>}
+        <button type="submit">Login</button><br />
+        <p>
+    Don't have an account?{" "}
+      <Link to="/register" style={{ color: "blue", textDecoration: "underline" }}>
+      Register
+    </Link>
+  </p>
       </form>
-      <p>
-        Don't have an account?{' '}
-        <button onClick={() => navigate('/register')}>Register here</button>
-      </p>
     </div>
   );
 };
