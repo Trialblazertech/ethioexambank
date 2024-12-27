@@ -1,12 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { 
-  getAuth, 
-  signInWithEmailAndPassword, 
-  signInWithPopup, 
-  GoogleAuthProvider, 
-  signOut 
-} from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
+import { getFirestore, doc, setDoc } from "firebase/firestore"; // Add Firestore imports
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -22,6 +17,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const db = getFirestore(app); // Initialize Firestore
 
 // Function to sign in with email and password
 export const doSignInWithEmailAndPassword = async (email, password) => {
@@ -53,5 +49,25 @@ export const doSignOut = async () => {
   }
 };
 
-// Export initialized Firebase app and auth
-export { auth, app };
+// Function to add user data to Firestore
+export const addUserToFirestore = async (email, university, department) => {
+  const userId = email; // You can use email or Firebase Auth UID here as the user ID
+
+  try {
+    // Create a document for the user with their email as the document ID
+    await setDoc(doc(db, "users", userId), {
+      email: email,
+      university: university,
+      department: department,
+      createdAt: new Date(),
+    });
+
+    console.log("User added to Firestore successfully.");
+  } catch (error) {
+    console.error("Error adding user to Firestore: ", error);
+    throw error; // Re-throw error to be handled in the Register component
+  }
+};
+
+// Export initialized Firebase app, auth, and db
+export { auth, db, app };

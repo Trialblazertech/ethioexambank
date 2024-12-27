@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { doSignInWithEmailAndPassword } from "../../firebase/auth";
 import { auth } from "../../firebase/firebase"; // Import the auth instance
 import { onAuthStateChanged } from "../../firebase/auth";
+import "../css/login.css";
+
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -32,7 +34,7 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className="login-container">
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <input
@@ -41,25 +43,27 @@ const Login = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-        /> <br />
+        />
+        <br />
         <input
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-        /> <br />
-        {error && <p style={{ color: "red" }}>{error}</p>}
-        <button type="submit">Login</button><br />
+        />
+        <br />
+        {error && <p className="error-message">{error}</p>}
+        <button type="submit">Login</button>
+        <br />
         <p>
-    Don't have an account?{" "}
-      <Link to="/register" style={{ color: "blue", textDecoration: "underline" }}>
-      Register
-    </Link>
-  </p>
+          Don't have an account?{" "}
+          <Link to="/register">Register</Link>
+        </p>
       </form>
     </div>
   );
+  
 };
 
 export default Login;
