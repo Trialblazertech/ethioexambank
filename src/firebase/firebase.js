@@ -1,5 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+
 import { 
   getAuth, 
   signInWithEmailAndPassword, 
@@ -55,3 +57,5 @@ export const doSignOut = async () => {
 
 // Export initialized Firebase app and auth
 export { auth, app };
+const apps = initializeApp(firebaseConfig);
+export const db = getFirestore(apps);

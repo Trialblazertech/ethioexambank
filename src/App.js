@@ -34,6 +34,8 @@ const App = () => {
 
         {/* Admin Routes */}
         <Route path="/admin/login" element={<AdminLogin />} />
+
+        {/* Admin Dashboard */}
         <Route
           path="/admin"
           element={
@@ -41,12 +43,41 @@ const App = () => {
               <AdminDashboard />
             </AdminProtectedRoute>
           }
-        >
-          <Route path="add-quiz" element={<AddQuiz />} />
-          <Route path="manage-quiz" element={<ManageQuiz />} />
-          <Route path="free-plan-users" element={<FreePlanUsers />} />
-          <Route path="premium-plan-users" element={<PremiumPlanUsers />} />
-        </Route>
+        />
+
+        {/* Standalone Admin Functionalities */}
+        <Route
+          path="/admin/add-quiz"
+          element={
+            <AdminProtectedRoute>
+              <AddQuiz />
+            </AdminProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/manage-quiz"
+          element={
+            <AdminProtectedRoute>
+              <ManageQuiz />
+            </AdminProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/free-plan-users"
+          element={
+            <AdminProtectedRoute>
+              <FreePlanUsers />
+            </AdminProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/premium-plan-users"
+          element={
+            <AdminProtectedRoute>
+              <PremiumPlanUsers />
+            </AdminProtectedRoute>
+          }
+        />
       </Routes>
     </Router>
   );
