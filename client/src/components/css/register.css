@@ -1,0 +1,131 @@
+/* General Styles for Register Form */
+.register-container {
+  width: 100%;
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #f9f9f9; /* Match login background color */
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd; /* Match login border style */
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 16px; /* Slightly reduced spacing */
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* Reduced gap between inputs */
+}
+
+input,
+select {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+button {
+  padding: 10px;
+  background-color: #007bff; /* Match login button color */
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 12px; /* Added spacing for distinction */
+}
+
+button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
+  background-color: #0056b3; /* Match login hover effect */
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  text-align: center;
+  margin: 8px 0; /* Reduced spacing */
+}
+
+.link {
+  color: #007bff; /* Match login link color */
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Design for Mobile Devices */
+@media (max-width: 768px) {
+  .register-container {
+      width: 90%;
+      margin: 20px auto;
+      padding: 15px;
+  }
+
+  h1 {
+      font-size: 18px;
+  }
+
+  input,
+  select {
+      font-size: 14px;
+  }
+
+  button {
+      font-size: 14px;
+  }
+
+  .link {
+      font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .register-container {
+      margin: 10px auto;
+      padding: 10px;
+  }
+
+  h1 {
+      font-size: 16px;
+  }
+
+  input,
+  select {
+      font-size: 12px;
+  }
+
+  button {
+      font-size: 12px;
+  }
+
+  .link {
+      font-size: 12px;
+  }
+}
+.scrollable-dropdown {
+  width: 100%; /* Adjust width as needed */
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  max-height: 90px; /* Approx. height to show 4 options */
+  overflow-y: auto; /* Enable scrolling when options exceed 4 */
+}
