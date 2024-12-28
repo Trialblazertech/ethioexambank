@@ -55,11 +55,11 @@ const RegisterForm = ({
         placeholder="University/College"
         required
       />
-     <select
-  className="scrollable-dropdown"
+    <select
   value={department}
   onChange={(e) => setDepartment(e.target.value)}
   required
+  className="scrollable-dropdown"
 >
   <option value="" disabled>
     Select Department
@@ -69,9 +69,9 @@ const RegisterForm = ({
   <option value="Mechanical Engineering">Mechanical Engineering</option>
   <option value="Civil Engineering">Civil Engineering</option>
   <option value="Business Administration">Business Administration</option>
-  <option value="Mathematics">Mathematics</option>
-
+  
 </select>
+
 
       {errorMessage && <p className="error-message">{errorMessage}</p>}
       <button type="submit" disabled={isRegistering}>
@@ -80,7 +80,7 @@ const RegisterForm = ({
       <div className="login-link">
         <p>
           Already have an account?{" "}
-          <Link to="/login">Login here</Link>
+          <Link to="/login">Login</Link>
         </p>
       </div>
     </form>

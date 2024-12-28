@@ -8,23 +8,23 @@
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
-  }
-  
-  .login-container h2 {
-    margin-bottom: 20px;
+}
+
+.login-container h2 {
+    margin-bottom: 46px; /* Slightly reduced */
     color: #333;
-  }
-  
-  .login-container input {
+}
+
+.login-container input {
     width: 90%;
     padding: 10px;
-    margin: 10px 0;
+    margin: -10px 0; /* Reduced spacing between inputs */
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
-  }
-  
-  .login-container button {
+}
+
+.login-container button {
     width: 95%;
     padding: 10px;
     background-color: #007bff;
@@ -33,80 +33,79 @@
     border-radius: 4px;
     font-size: 16px;
     cursor: pointer;
-    margin-top: 10px;
-  }
-  
-  .login-container button:hover {
+    margin-top: -12px; /* Slightly increased for distinction */
+}
+
+.login-container button:hover {
     background-color: #0056b3;
-  }
-  
-  .login-container p {
-    margin-top: 15px;
+}
+
+.login-container p {
+    margin-top: 10px; /* Reduced for tighter spacing */
     color: #666;
-  }
-  
-  .login-container a {
+}
+
+.login-container a {
     color: #007bff;
     text-decoration: none;
-  }
-  
-  .login-container a:hover {
+}
+
+.login-container a:hover {
     text-decoration: underline;
-  }
-  
-  .error-message {
+}
+
+.error-message {
     color: red;
-    margin: 10px 0;
+    margin: 8px 0; /* Reduced spacing */
     font-size: 14px;
-  }
-  
-  /* Responsive Design for Mobile Devices */
-  @media (max-width: 768px) {
+}
+
+/* Responsive Design for Mobile Devices */
+@media (max-width: 768px) {
     .login-container {
-      width: 90%;
-      margin: 20px auto;
-      padding: 15px;
+        width: 90%;
+        margin: 20px auto;
+        padding: 15px;
     }
-  
+
     .login-container input {
-      width: 100%;
-      font-size: 14px;
+        width: 100%;
+        font-size: 14px;
     }
-  
+
     .login-container button {
-      width: 100%;
-      font-size: 14px;
+        width: 100%;
+        font-size: 14px;
     }
-  
+
     .login-container h2 {
-      font-size: 18px;
+        font-size: 18px;
     }
-  
+
     .login-container p {
-      font-size: 14px;
+        font-size: 14px;
     }
-  }
-  
-  @media (max-width: 480px) {
+}
+
+@media (max-width: 480px) {
     .login-container {
-      margin: 10px auto;
-      padding: 10px;
+        margin: 10px auto;
+        padding: 10px;
     }
-  
+
     .login-container h2 {
-      font-size: 16px;
+        font-size: 16px;
     }
-  
+
     .login-container input {
-      font-size: 12px;
+        font-size: 12px;
     }
-  
+
     .login-container button {
-      font-size: 12px;
+        font-size: 12px;
     }
-  
+
     .login-container p {
-      font-size: 12px;
+        font-size: 12px;
     }
-  }
-  
+}
