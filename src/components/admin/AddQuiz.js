@@ -54,6 +54,20 @@ const AddQuiz = () => {
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validate all required fields
+    const isValid = questions.every(q => {
+      return q.question.trim() !== '' &&
+             q.options.every(opt => opt.trim() !== '') &&
+             q.correctAnswer.trim() !== '' &&
+             q.description.trim() !== '';
+    });
+
+    if (!isValid) {
+      alert('Please fill in all required fields.');
+      return;
+    }
+
     setIsSubmitting(true);
 
     const quizData = {
@@ -92,6 +106,7 @@ const AddQuiz = () => {
               value={selectedPoints} 
               onChange={(e) => setSelectedPoints(Number(e.target.value))} 
               className="form-select"
+              required
             >
               {points.map((point) => (
                 <option key={point} value={point}>
@@ -108,6 +123,7 @@ const AddQuiz = () => {
               value={selectedDepartment} 
               onChange={(e) => handleDepartmentChange(e.target.value)} 
               className="form-select"
+              required
             >
               {departments.map((department) => (
                 <option key={department} value={department}>
@@ -124,6 +140,7 @@ const AddQuiz = () => {
               value={selectedCourse} 
               onChange={(e) => setSelectedCourse(e.target.value)} 
               className="form-select"
+              required
             >
               {courses[selectedDepartment].map((course) => (
                 <option key={course} value={course}>
@@ -146,6 +163,7 @@ const AddQuiz = () => {
                 onChange={(e) => handleUpdateQuestion(index, 'question', e.target.value)} 
                 required 
                 className="form-input"
+                placeholder="Enter your question"
               />
             </label>
 
@@ -159,6 +177,7 @@ const AddQuiz = () => {
                   onChange={(e) => handleUpdateOption(index, optIndex, e.target.value)} 
                   required 
                   className="form-input"
+                  placeholder={`Option ${String.fromCharCode(65 + optIndex)}`}
                 />
               </label>
             ))}
@@ -187,6 +206,7 @@ const AddQuiz = () => {
                 onChange={(e) => handleUpdateQuestion(index, 'description', e.target.value)} 
                 required 
                 className="form-textarea"
+                placeholder="Enter description"
               />
             </label>
           </div>

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { db } from '../../firebase/firebase'; // Firebase setup
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { FiArrowLeft } from 'react-icons/fi'; // Importing back icon
+import '../assets/admincss/EditQuiz.css'; // Importing custom CSS for styling
 
 const EditQuiz = () => {
   const { quizId, questionIndex } = useParams();
@@ -42,58 +44,79 @@ const EditQuiz = () => {
   if (!editedQuestion) return <div>Loading...</div>;
 
   return (
-    <div>
-      <h1>Edit Question</h1>
-      <label>
-        Question:
-        <input
-          type="text"
-          value={editedQuestion.question}
-          onChange={(e) => setEditedQuestion({ ...editedQuestion, question: e.target.value })}
-        />
-      </label>
-
-      <h4>Options</h4>
-      {editedQuestion.options.map((option, index) => (
-        <label key={index}>
-          Option {String.fromCharCode(65 + index)}:
+    <div className="edit-quiz-container">
+      <div className="back-icon" onClick={() => navigate('/admin/')}>
+        <FiArrowLeft /> Back to Admin Dashboard
+      </div>
+      <h1 className="form-title">Edit Question</h1>
+      <div className="form-group">
+        <label className="form-label">
+          Question:
           <input
             type="text"
-            value={option}
-            onChange={(e) => {
-              const updatedOptions = [...editedQuestion.options];
-              updatedOptions[index] = e.target.value;
-              setEditedQuestion({ ...editedQuestion, options: updatedOptions });
-            }}
+            value={editedQuestion.question}
+            onChange={(e) => setEditedQuestion({ ...editedQuestion, question: e.target.value })}
+            className="form-input"
           />
         </label>
+      </div>
+
+      <h4 className="options-title">Options</h4>
+      {editedQuestion.options.map((option, index) => (
+        <div key={index} className="form-group">
+          <label className="form-label">
+            Option {String.fromCharCode(65 + index)}:
+            <input
+              type="text"
+              value={option}
+              onChange={(e) => {
+                const updatedOptions = [...editedQuestion.options];
+                updatedOptions[index] = e.target.value;
+                setEditedQuestion({ ...editedQuestion, options: updatedOptions });
+              }}
+              className="form-input"
+            />
+          </label>
+        </div>
       ))}
 
-      <label>
-        Correct Answer:
-        <select
-          value={editedQuestion.correctAnswer}
-          onChange={(e) => setEditedQuestion({ ...editedQuestion, correctAnswer: e.target.value })}
-        >
-          <option value="">Select Correct Option</option>
-          {editedQuestion.options.map((_, index) => (
-            <option key={index} value={String.fromCharCode(65 + index)}>
-              Option {String.fromCharCode(65 + index)}
-            </option>
-          ))}
-        </select>
-      </label>
+      <div className="form-group">
+        <label className="form-label">
+          Correct Answer:
+          <select
+            value={editedQuestion.correctAnswer}
+            onChange={(e) => setEditedQuestion({ ...editedQuestion, correctAnswer: e.target.value })}
+            className="form-select"
+          >
+            <option value="">Select Correct Option</option>
+            {editedQuestion.options.map((_, index) => (
+              <option key={index} value={String.fromCharCode(65 + index)}>
+                Option {String.fromCharCode(65 + index)}
+              </option>
+            ))}
+          </select>
+        </label>
+      </div>
 
-      <label>
-        Description:
-        <textarea
-          value={editedQuestion.description}
-          onChange={(e) => setEditedQuestion({ ...editedQuestion, description: e.target.value })}
-        />
-      </label>
+      <div className="form-group">
+        <label className="form-label">
+          Description:
+          <textarea
+            value={editedQuestion.description}
+            onChange={(e) => setEditedQuestion({ ...editedQuestion, description: e.target.value })}
+            className="form-textarea"
+          />
+        </label>
+      </div>
 
-      <button onClick={handleSave}>Save Changes</button>
-      <button onClick={() => navigate('/admin/manage-quiz')}>Cancel</button>
+      <div className="form-buttons">
+        <button onClick={handleSave} className="btn btn-primary">
+          Save Changes
+        </button>
+        <button onClick={() => navigate('/admin/manage-quiz')} className="btn btn-secondary">
+          Cancel
+        </button>
+      </div>
     </div>
   );
 };
