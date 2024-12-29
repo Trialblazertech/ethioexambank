@@ -11,6 +11,7 @@ import AdminProtectedRoute from './components/admin/AdminProtectedRoute';
 // Admin Functionalities
 import AddQuiz from './components/admin/AddQuiz';
 import ManageQuiz from './components/admin/ManageQuiz';
+import EditQuiz from './components/admin/EditQuiz'; // Import the EditQuiz component
 import FreePlanUsers from './components/admin/FreePlanUsers';
 import PremiumPlanUsers from './components/admin/PremiumPlanUsers';
 
@@ -59,6 +60,14 @@ const App = () => {
           element={
             <AdminProtectedRoute>
               <ManageQuiz />
+            </AdminProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/edit-quiz/:quizId/:questionIndex"
+          element={
+            <AdminProtectedRoute>
+              <EditQuiz />
             </AdminProtectedRoute>
           }
         />

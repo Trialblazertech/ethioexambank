@@ -2,21 +2,26 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { db } from '../../firebase/firebase'; // Firebase setup
 import { collection, addDoc } from 'firebase/firestore';
-// import '../assets/admincss/AddQuiz.css';
-
 
 const AddQuiz = () => {
   const navigate = useNavigate();
-
+ 
   // Predefined options
-  const totalTimes = [30, 60, 100]; // in minutes
   const points = [1, 2, 5];
-  const departments = ['Math', 'Science', 'History', 'Programming'];
+  const departments = ['Computer_Science', 'IT', 'History', 'Programming'];
+
+  // Courses mapped to departments
+  const courses = {
+    Computer_Science: ['Computer Programming', 'Database Systems', 'Object Oriented Programming', 'Computer organization and Architecture', 'Data Communication and Computer Networking ', 'Data Structures and Algorithms', 'Operating System', 'Software Engineering', 'Design and Analysis of Algorithms', 'Introduction to Artificial Intelligence', 'Computer Security', 'Network and System Administration', 'Automata and Complexity Theory', 'Compiler Design'],
+    IT: ['Physics', 'Chemistry', 'Biology'],
+    History: ['World History', 'American History', 'Ancient Civilizations'],
+    Programming: ['JavaScript', 'Python', 'Java'],
+  };
 
   // State management
-  const [selectedTime, setSelectedTime] = useState(totalTimes[0]);
   const [selectedPoints, setSelectedPoints] = useState(points[0]);
   const [selectedDepartment, setSelectedDepartment] = useState(departments[0]);
+  const [selectedCourse, setSelectedCourse] = useState(courses[departments[0]][0]);
   const [questions, setQuestions] = useState([
     { 
       question: '', 
@@ -26,6 +31,12 @@ const AddQuiz = () => {
     },
   ]);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Update the selected department and reset the selected course
+  const handleDepartmentChange = (newDepartment) => {
+    setSelectedDepartment(newDepartment);
+    setSelectedCourse(courses[newDepartment][0]); // Set the first course of the selected department
+  };
 
   // Add a new question
   const handleAddQuestion = () => {
@@ -55,19 +66,18 @@ const AddQuiz = () => {
     setIsSubmitting(true);
 
     const quizData = {
-      totalTime: selectedTime,
       points: selectedPoints,
       department: selectedDepartment,
+      course: selectedCourse,
       questions,
     };
 
     try {
       const docRef = await addDoc(collection(db, 'quizzes'), quizData);
-      alert(`Quiz created successfully! ID: ${docRef.id}`);
-      navigate('/admin/manage-quiz'); // Redirect to Manage Quiz page
+      alert(`Quiz saved successfully! ID: ${docRef.id}`);
     } catch (error) {
-      console.error('Error adding quiz:', error);
-      alert('Error creating quiz. Please try again.');
+      console.error('Error saving quiz:', error);
+      alert('Error saving quiz. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -77,18 +87,6 @@ const AddQuiz = () => {
     <div>
       <h1>Add Quiz</h1>
       <form onSubmit={handleSubmit}>
-        {/* Select Total Time */}
-        <label>
-          Total Time:
-          <select value={selectedTime} onChange={(e) => setSelectedTime(Number(e.target.value))}>
-            {totalTimes.map((time) => (
-              <option key={time} value={time}>
-                {time} minutes
-              </option>
-            ))}
-          </select>
-        </label>
-
         {/* Select Points */}
         <label>
           Points per Question:
@@ -104,10 +102,28 @@ const AddQuiz = () => {
         {/* Select Department */}
         <label>
           Department:
-          <select value={selectedDepartment} onChange={(e) => setSelectedDepartment(e.target.value)}>
+          <select
+            value={selectedDepartment}
+            onChange={(e) => handleDepartmentChange(e.target.value)}
+          >
             {departments.map((department) => (
               <option key={department} value={department}>
                 {department}
+              </option>
+            ))}
+          </select>
+        </label>
+
+        {/* Select Course */}
+        <label>
+          Course:
+          <select
+            value={selectedCourse}
+            onChange={(e) => setSelectedCourse(e.target.value)}
+          >
+            {courses[selectedDepartment].map((course) => (
+              <option key={course} value={course}>
+                {course}
               </option>
             ))}
           </select>
@@ -167,13 +183,17 @@ const AddQuiz = () => {
           </div>
         ))}
 
-        <button type="button" onClick={handleAddQuestion}>
+        {/* <button type="button" onClick={handleAddQuestion}>
           Add Another Question
-        </button>
+        </button> */}
 
         {/* Submit Button */}
         <button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? 'Creating Quiz...' : 'Create Quiz'}
+          {isSubmitting ? 'Saving Quiz...' : 'Save Quiz'}
+        </button>
+
+        <button type="button" onClick={() => navigate('/admin/manage-quiz')}>
+          View Quiz
         </button>
       </form>
     </div>
