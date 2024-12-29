@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { db } from '../../firebase/firebase'; // Firebase setup
 import { collection, getDocs, doc, deleteDoc } from 'firebase/firestore';
+import '../assets/admincss/ManageQuiz.css'; // Custom CSS for styling
 
 const ManageQuiz = () => {
   const [quizzes, setQuizzes] = useState([]);
@@ -61,12 +62,17 @@ const ManageQuiz = () => {
   };
 
   return (
-    <div>
-      <h1>Manage Quizzes</h1>
+    <div className="manage-quiz-container">
+      <header className="quiz-header">
+        <button className="back-button" onClick={() => navigate('/admin/')} title="Back to Admin Dashboard">
+          <i className="fas fa-arrow-left"></i> Back
+        </button>
+        <h1 className="page-title">Manage Quizzes</h1>
+      </header>
 
       {/* Filter Section */}
-      <div style={{ marginBottom: '20px' }}>
-        <label>
+      <div className="filter-section">
+        <label className="filter-label">
           Department:
           <select value={selectedDepartment} onChange={(e) => setSelectedDepartment(e.target.value)}>
             <option value="">All Departments</option>
@@ -74,16 +80,17 @@ const ManageQuiz = () => {
           </select>
         </label>
 
-        <label style={{ marginLeft: '20px' }}>
+        <label className="filter-label">
           Course:
           <select value={selectedCourse} onChange={(e) => setSelectedCourse(e.target.value)}>
             <option value="">All Courses</option>
             {courses.map(course => <option key={course} value={course}>{course}</option>)}
           </select>
         </label>
+
       </div>
 
-      <table border="1" style={{ width: '100%', borderCollapse: 'collapse' }}>
+      <table className="quiz-table">
         <thead>
           <tr>
             <th>Question No.</th>
@@ -94,13 +101,14 @@ const ManageQuiz = () => {
         <tbody>
           {filteredQuizzes.map((quiz, quizIndex) => (
             quiz.questions.map((q, questionIndex) => (
-              <tr key={`${quiz.id}-${questionIndex}`}>
+              <tr key={`${quiz.id}-${questionIndex}`} className="quiz-row">
                 <td>{questionIndex + 1}</td>
                 <td>{q.question}</td>
-                <td>
-                  <button onClick={() => handleEditQuestion(quiz.id, questionIndex)}>Edit</button>
-                  <button onClick={() => handleDeleteQuestion(quiz.id, questionIndex)}>Delete</button>
+                <td className="btn-group">
+                  <button className="btn btn-edit" onClick={() => handleEditQuestion(quiz.id, questionIndex)}>Edit</button>
+                  <button className="btn btn-delete" onClick={() => handleDeleteQuestion(quiz.id, questionIndex)}>Delete</button>
                 </td>
+
               </tr>
             ))
           ))}

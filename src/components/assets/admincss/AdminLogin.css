@@ -1,0 +1,109 @@
+/* General Styling */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+}
+
+/* Container for Login */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+  padding: 20px;
+}
+
+/* Card for Login Form */
+.login-card {
+  background-color: white;
+  padding: 40px 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+/* Heading */
+.login-card h2 {
+  margin-bottom: 20px;
+  color: #333; /* Dark gray */
+  font-size: 24px;
+}
+
+/* Error Message */
+.error-message {
+  color: #d9534f; /* Soft red */
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+/* Form Group */
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+/* Label Styling */
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #555; /* Medium gray */
+  font-size: 14px;
+}
+
+/* Input Fields */
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc; /* Light gray border */
+  border-radius: 5px;
+  font-size: 14px;
+  outline: none;
+  box-sizing: border-box;
+  transition: border 0.3s;
+  background-color: #fafafa; /* Very light gray */
+}
+
+.form-group input:focus {
+  border-color: #888; /* Medium gray on focus */
+}
+
+/* Login Button */
+.login-button {
+  background-color: #888; /* Medium gray */
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s, transform 0.2s;
+  width: 100%;
+}
+
+.login-button:hover {
+  background-color: #555; /* Darker gray on hover */
+  transform: scale(1.02);
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .login-card {
+    padding: 20px;
+  }
+
+  .login-card h2 {
+    font-size: 20px;
+  }
+
+  .form-group input {
+    font-size: 12px;
+  }
+
+  .login-button {
+    font-size: 14px;
+  }
+}
