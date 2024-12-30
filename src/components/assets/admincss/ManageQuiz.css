@@ -1,0 +1,147 @@
+.manage-quiz-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+  }
+  
+  .page-title {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .filter-section {
+    display: block;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    /* margin-left: 80%; */
+  }
+  
+  .filter-label {
+    /* margin-right: 20px; */
+    font-size: 16px;
+    color: #555;
+  }
+  
+  .filter-select {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    width: 200px;
+  }
+  
+  .quiz-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-size: 16px;
+  }
+  
+  .quiz-table th, .quiz-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .quiz-row:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .quiz-row:hover {
+    background-color: #e8f4f8;
+  }
+  
+  .btn {
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .btn-edit {
+    background-color: #007BFF;
+    color: white;
+  }
+  
+  .btn-edit:hover {
+    background-color: #0056b3;
+  }
+  
+  .btn-delete {
+    background-color: #FF4C4C;
+    color: white;
+  }
+  
+  .btn-delete:hover {
+    background-color: #cc0000;
+  }
+  .btn {
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .btn-group {
+    display: flex;
+    gap: 10px; /* Add gap between the buttons */
+  }
+  
+  .btn-edit {
+    background-color: #007BFF;
+    color: white;
+  }
+  
+  .btn-edit:hover {
+    background-color: #0056b3;
+  }
+  
+  .btn-delete {
+    background-color: #FF4C4C;
+    color: white;
+  }
+  
+  .btn-delete:hover {
+    background-color: #cc0000;
+  }
+  .btn {
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .btn-group {
+    display: flex;
+    gap: 10px; /* Add gap between the buttons */
+  }
+  
+  .btn-edit {
+    background-color: #007BFF;
+    color: white;
+  }
+  
+  .btn-edit:hover {
+    background-color: #0056b3;
+  }
+  
+  .btn-delete {
+    background-color: #FF4C4C;
+    color: white;
+  }
+  
+  .btn-delete:hover {
+    background-color: #cc0000;
+  }
+  .filter-label {
+    display: inline-block;
+    margin-right: 0; /* Remove margin */
+  }
+  
+  .filter-section {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+    gap: 10px; /* Add gap between the dropdowns */
+}
