@@ -1,0 +1,116 @@
+/* General Styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  .dashboard-container {
+    background-color: #eef3e5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 10px;
+  }
+  
+  .dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    background-color: #778beb;
+    color: white;
+  }
+  
+  .menu-button,
+  .settings-button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: white;
+  }
+  
+  .user-email {
+    font-size: 1rem;
+  }
+  
+  .dashboard-content {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .section-title {
+    font-size: 1.2rem;
+    color: #778beb;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  
+  .button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .dashboard-button {
+    background-color: #778beb;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 15px;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 100%;
+    max-width: 250px;
+    margin: 0 auto;
+  }
+  
+  .dashboard-button:hover {
+    background-color: #4a69bd;
+  }
+  
+  .emoji {
+    margin-left: 5px;
+  }
+  
+  .dashboard-footer {
+    margin-top: auto;
+    font-size: 0.8rem;
+    color: #778beb;
+  }
+  
+  /* Desktop View */
+  @media (min-width: 768px) {
+    .dashboard-container {
+      padding: 20px;
+    }
+  
+    .dashboard-header {
+      padding: 20px;
+      font-size: 1.2rem;
+    }
+  
+    .button-group {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+  
+    .dashboard-button {
+      width: auto;
+      padding: 20px 30px;
+    }
+  
+    .section-title {
+      font-size: 1.5rem;
+    }
+  
+    .dashboard-footer {
+      font-size: 1rem;
+    }
+  }
+  

@@ -5,6 +5,8 @@ import Home from "./components/home/home";
 import Register from "./components/home/register";
 import ProtectedRoute from "./components/home/protectedRoute";
 import { AuthProvider } from "./context/authContext";
+import Dashboard from "./components/home/dashboard";
+import ExamPage from "./components/home/examPage";
 
 const App = () => {
   return (
@@ -20,7 +22,7 @@ const App = () => {
             path="/"
             element={
               <ProtectedRoute>
-                <Home />
+                <Dashboard />
               </ProtectedRoute>
             }
           />
